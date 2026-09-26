@@ -23,15 +23,16 @@ from langchain_tavily import TavilySearch
 #     temperature=0
 # )
 
-
-deepseek_api_key = "" #可修改为.env加载
+load_dotenv()
+api_key=os.getenv("DEEPSEEK_API_KEY")
+print(api_key)
 llm = ChatOpenAI(
     model="deepseek-chat",  # 指定 DeepSeek 的模型名称
-    api_key=deepseek_api_key,
+    api_key=api_key,
     base_url="https://api.deepseek.com", # 核心：将 base_url 指向 DeepSeek 的接口
     temperature=0.7
 )
-load_dotenv()
+
 print(os.getenv("TAVILY_API_KEY"))  # 打印出来看看是不是 None
 # 2. 定义工具
 search = TavilySearch(max_results=5)
